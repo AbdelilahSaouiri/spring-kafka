@@ -1,17 +1,16 @@
-package net.ensah.orderservice.entity;
+package net.ensah.inventoryservice.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-import net.ensah.orderservice.enums.OrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.ensah.inventoryservice.enums.OrderStatus;
 
-@Entity
-@AllArgsConstructor  @NoArgsConstructor @Builder @Getter @Setter
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class OrderEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String productCode;
     private int quantity;
-    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @Override

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:h2:mem:inventory-db?createDatabaseIfNotExists=true
+  cloud:
+    stream:
+      bindings:
+        OrderEntityConsumer-in-0:
+          destination: T1
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
+    function:
+      definition: OrderEntityConsumer
+  h2:
+    console:
+      enabled: true
+server:
+  port: 8082
+

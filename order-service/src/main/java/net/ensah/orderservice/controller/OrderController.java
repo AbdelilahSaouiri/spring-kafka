@@ -5,6 +5,8 @@ import net.ensah.orderservice.service.OrderServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.function.Consumer;
+
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController {
@@ -25,4 +27,6 @@ public class OrderController {
     public ResponseEntity<?> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
+
+
 }

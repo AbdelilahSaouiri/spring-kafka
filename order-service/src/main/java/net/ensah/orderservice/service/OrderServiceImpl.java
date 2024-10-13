@@ -5,9 +5,11 @@ import net.ensah.orderservice.entity.OrderEntity;
 import net.ensah.orderservice.enums.OrderStatus;
 import net.ensah.orderservice.repository.OrderRepository;
 import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 @Service
 @Slf4j
@@ -37,4 +39,5 @@ public class OrderServiceImpl {
     public List<OrderEntity> getAllOrders() {
         return orderRepository.findAll();
     }
+
 }
