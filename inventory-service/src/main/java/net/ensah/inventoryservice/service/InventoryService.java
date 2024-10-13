@@ -7,6 +7,7 @@ import net.ensah.inventoryservice.repository.ProductInvRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @Service
@@ -21,19 +22,22 @@ public class InventoryService {
 
     @Bean
     public Consumer<OrderEntity> OrderEntityConsumer() {
-        System.out.println("arrived ***********");
         return (input) -> {
             try {
-                System.out.println("*****************");
+                ProductIneventory productIneventory = ProductIneventory.builder()
+                                .productCode(input.getProductCode())
+                                        .quantityAvailable(input.getQuantity())
+                                                .build();
                 log.info("received order");
-                System.out.println("Received message: " +input.toString());
-                log.info("input {}", input);
-                System.out.println("*****************");
+                ProductIneventory saved = productInvRepository.save(productIneventory);
             } catch (Exception e) {
                 System.out.println("Error in handling message: " + e.getMessage());
-                e.printStackTrace();
             }
         };
     }
 
+
+    public List<ProductIneventory> getAll() {
+        return productInvRepository.findAll();
+    }
 }
